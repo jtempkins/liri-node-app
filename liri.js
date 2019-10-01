@@ -62,7 +62,7 @@ function myMovie() {
     console.log("Title: " + response.data.Title);
     console.log("Year: " + response.data.Year);
     console.log("Rating: " + response.data.imdbRating);
-    console.log(response.data.Ratings[1]);
+    console.log("Rotten: " + response.data.Ratings[1].Value);
     console.log("Country: " + response.data.Country);
     console.log("Language: " + response.data.Language);
     console.log("Plot: " + response.data.Plot);
@@ -75,8 +75,7 @@ function myMovie() {
   
     axios.get('http://rest.bandsintown.com/artists/' + searchTerm + '/events?app_id=codingbootcamp').then
     (function(response) {
-      console.log(response.venue);
-      // console.log(response.venue.name);
-    // console.log(response.venue.city);
-    // console.log(moment(response.datetime).format("MM/DD/YYYY"));
+      console.log(response.data[0].venue.name);
+    console.log(response.data[0].venue.city);
+    console.log(moment(response.data[0].datetime).format("MM/DD/YYYY"));
    })};
