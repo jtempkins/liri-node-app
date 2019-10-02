@@ -6,7 +6,7 @@ var fs = require("fs");
 var moment = require("moment")
 
 // var request = require('request');
-// var spotify = new Spotify(keys.spotify);
+var spotify = new Spotify(keys.spotify);
 
 
 
@@ -37,14 +37,15 @@ switch (command) {
 
 };
 
-function mySpotify() {
+function mySpotify(data) {
 
-  var spotify = new Spotify({
-    id: keys.spotify.id,
-    secret: keys.spotify.secret
-  });
+  var thisSearch = data;
+  // var spotify = new Spotify(keys.spotify{
+  //   id: keys.spotify.id,
+  //   secret: keys.spotify.secret
+  // });
 
-  var searchTerm = artistSongMovie || "The Sign";
+  var searchTerm = artistSongMovie || "ace of base The Sign";
 
   spotify.search({ type: 'track', query: searchTerm }, function (err, data) {
     console.log(data.tracks.items[0].name);
@@ -78,4 +79,24 @@ function myMovie() {
       console.log(response.data[0].venue.name);
     console.log(response.data[0].venue.city);
     console.log(moment(response.data[0].datetime).format("MM/DD/YYYY"));
-   })};
+   })
+  };
+
+  function doFromInput(){
+    fs.readFile("random.txt", "utf8", function(error, data) {
+      if (error) {
+        return console.log(error);
+      }
+          console.log(data + "this data");
+  
+          // Then split it by commas (to make it more readable)
+      // var dataArr = data;
+      var dataArr = data.split(",");
+      if (dataArr[0] == "spotify-this-song");
+      console.log(dataArr[0]) 
+      { 
+        var searchTerm = dataArr[1].trim().slice(1, -1);
+        mySpotify(searchTerm);
+      }
+
+  })};
